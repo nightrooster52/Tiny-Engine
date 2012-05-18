@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Game{
-    Board board = new Board();
+
 
     public Game(){
 
@@ -13,7 +13,7 @@ public class Game{
     public static void main(String[] args){
 	Game g = new Game();
 	Scanner s = new Scanner(System.in);
-	
+	Board board = new Board();
 	while (true){
 	    System.out.println(g);
 	    g.handleMove(s.next());
@@ -33,31 +33,31 @@ public class Game{
 
     }
     public void up(){
- 	if (checkEdge(entity.getX(),entity.getY()-1) && checkTile(entity.getX(),entity.getY()-1)){
-		board.getTile(entity.getX(),entity.getY()).vacate();
-		entity.move(0, -1);
-		board.getTile(entity.getX(),entity.getY()).occupy(entity);
+ 	if (checkEdge(player.getX(),player.getY()-1) && checkTile(player.getX(),player.getY()-1)){
+		board.getTile(player.getX(),player.getY()).vacate();
+		player.move(0, -1);
+		board.getTile(player.getX(),player.getY()).occupy(player);
 	    }
     }
     public void down(){
- 	if (checkEdge(entity.getX(),entity.getY()+1) && checkTile(entity.getX(),entity.getY()+1)){
-		board.getTile(entity.getX(),entity.getY()).vacate();
-		entity.move(0, 1);
-		board.getTile(entity.getX(),entity.getY()).occupy(entity);
+ 	if (checkEdge(player.getX(),player.getY()+1) && checkTile(player.getX(),player.getY()+1)){
+		board.getTile(player.getX(),player.getY()).vacate();
+		player.move(0, 1);
+		board.getTile(player.getX(),player.getY()).occupy(player);
 	    }
     }
     public void right(){
- 	if (checkEdge(entity.getX()+1,entity.getY()) && checkTile(entity.getX()+1,entity.getY())){
-		board.getTile(entity.getX(),entity.getY()).vacate();
-		entity.move(1, 0);
-		board.getTile(entity.getX(),entity.getY()).occupy(entity);
+ 	if (checkEdge(player.getX()+1,player.getY()) && checkTile(player.getX()+1,player.getY())){
+		board.getTile(player.getX(),player.getY()).vacate();
+		player.move(1, 0);
+		board.getTile(player.getX(),player.getY()).occupy(player);
 	    }
     }
     public void left(){
- 	if (checkEdge(entity.getX()-1,entity.getY()) && checkTile(entity.getX()-1,entity.getY())){
-		board.getTile(entity.getX(),entity.getY()).vacate();
-		entity.move(-1, 0);
-		board.getTile(entity.getX(),entity.getY()).occupy(entity);
+ 	if (checkEdge(player.getX()-1,player.getY()) && checkTile(player.getX()-1,player.getY())){
+		board.getTile(player.getX(),player.getY()).vacate();
+		player.move(-1, 0);
+		board.getTile(player.getX(),player.getY()).occupy(player);
 	    }
     }
 
