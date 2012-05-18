@@ -1,10 +1,16 @@
 public class Entity{
-    private int x, y;
-    private String type = "X";
+
+    protected int x, y;
+    protected String type = "#";
 
     public Entity(int x, int y){
 	this.x = x;
 	this.y = y;
+    }
+
+    public Entity(int x, int y, String type){
+	this(x, y);
+	this.type = type;
     }
     public String toString(){
 	return type;
@@ -14,10 +20,6 @@ public class Entity{
     }
     public int getY(){
 	return y;
-    }
-    public void move(int dx, int dy){
-	x += dx;
-	y += dy;
     }
 
 

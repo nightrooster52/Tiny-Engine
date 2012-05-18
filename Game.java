@@ -1,17 +1,13 @@
 import java.util.Scanner;
 
 public class Game{
-    int width = 20;
-    int height = 20;
-
-    Board board = new Board(width, height);
-    Entity entity = new Entity(10, 10);
-    private String block = "+";
+    Board board = new Board();
 
     public Game(){
-	Tile t = board.getTile(entity.getX(),entity.getY());
-	board.getTile(5,5).mutate(block);
-	t.occupy(entity);
+
+	//example map change thing here v
+	//board.getTile(5,5).mutate(block);
+
     }
     
     public static void main(String[] args){
@@ -28,15 +24,12 @@ public class Game{
 	return board.toString();
     }
     public boolean checkTile(int x, int y){
-	
-	return (block != board.getTile(x,y).getType()); //basic impassable tile
+	return (board.getTile(x,y).isOccupied()); //checks Tile occupancy
 
     }
     
     public boolean checkEdge(int x, int y){
 	return (x<board.getWidth() && x>-1 && y<board.getHeight() && y>-1);
-	
-
 
     }
     public void up(){
