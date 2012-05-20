@@ -10,8 +10,8 @@ public class Player extends Entity{
     }
 
     public void move(int dx, int dy){
-	this.x += x;
-	this.y += y;
+	this.x += dx;
+	this.y += dy;
     }
     
 }

@@ -20,6 +20,10 @@ public class Tile{
 	occupant = e;
 	occupied = true;
     }
+    public void occupy(Player e){
+	occupant = e;
+	occupied = true;
+    }
 
     public void vacate(){
 	occupant = null;
