@@ -1,15 +1,16 @@
 import java.util.Scanner;
 
 public class Game{
-  Board board = new Board();
-  Player player;
+    Board board = new Board();
+    Player player;
+    Ai[] aiArray;
 
   public Game(){
     player = board.getPlayer();
+    aiArray = board.getAiArray();
     //System.out.println(player);
     //example map change thing here v
     //board.getTile(5,5).mutate(block);
-
   }
 
   public String toString(){
@@ -25,17 +26,13 @@ public class Game{
   public boolean checkEdge(int x, int y){
       //System.out.println("called checkEdge");
       return (x<board.getWidth() && x>-1 && y<board.getHeight() && y>-1);
-
   }
 
+    public void moveEntity(int dx, int dy, Entity e){
+      //System.out.println("called moveEntity");
 
-
-  public void movePlayer(int dx, int dy){
-      //System.out.println("called movePlayer");
-      int px = player.getX();
-      int py = player.getY();
-
-
+      int px = e.getX();
+      int py = e.getY();
 
       int x = px + dx;
       int y = py + dy;
@@ -48,49 +45,52 @@ public class Game{
 	  Tile targetTile = board.getTile(x, y);
 	  if( !targetTile.isOccupied() ){
 
-	      // vacate players current tile
+	      // vacate Entity's current tile
 	      board.getTile(px, py).vacate();
 
-	      // move the player
-	      player.move(dx, dy);
+	      // move the entity
+	      e.move(dx, dy);
         
 	      // occupy the new tile
-	      targetTile.occupy(player);
-      }      
-    }
+	      targetTile.occupy(e);
+	  }      
+      }
   }
+    
 
 
-  public void handleMove(String s){
+
+    public void handleMove(String s, Entity e){
       System.out.println("called handleMove");
       if (s.equals("w")){
-	  movePlayer(0, -1);
+	  moveEntity(0, -1, e);
       }
       else if (s.equals("a")){
-	  movePlayer(-1, 0);
+	  moveEntity(-1, 0, e);
       }
       else if (s.equals("s")){
-	  movePlayer(0, 1);
+	  moveEntity(0, 1, e);
       }
       else if (s.equals("d")){
-	  movePlayer(1, 0);
+	  moveEntity(1, 0, e);
       }
       else{
 	  ; // do nothing
       }
   }
-
+    public void mainloop(Game g, Scanner s){
+	while (true){
+	    System.out.println(g);
+	    g.handleMove(s.next(), player);
+	}
+    }
 
 
   /***********************************/
   public static void main(String[] args){
       Game g = new Game();
       Scanner s = new Scanner(System.in);
-
-      while (true){
-	  System.out.println(g);
-	  g.handleMove(s.next());
-    }
+      g.mainloop(g, s);
   }
   /************************************/
 

@@ -21,6 +21,12 @@ public class Entity{
     public int getY(){
 	return y;
     }
-
+    public void die(){
+	;
+    }
+    public void move(int dx,int dy){
+	this.x += dx;
+	this.y += dy;
+    }
 
 }

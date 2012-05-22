@@ -1,14 +1,17 @@
+import java.util.Arrays;
+
 public class Board{
 
-  private Tile[][] board;
-  private int height;
-  private int width;
-  private Player player;
+    private Tile[][] board;
+    private int height;
+    private int width;
+    private Player player;
+    private Ai[] aiArray = new Ai[0];
 
-  String defaultTile = "0";
-  String blockTile = "#";
-  String playerTile = "X"; //spawn
-  String aiTile = "+"; //spawn
+    String defaultTile = "0";
+    String blockTile = "#";
+    String playerTile = "X"; //spawn
+    String aiTile = "+"; //spawn
 
 
   //default map
@@ -20,19 +23,19 @@ public class Board{
     + "00000000000000000000"
     + "00000000000000000000"
     + "00000000000000000000"
-    + "0####000000000000000"
     + "00000000000000000000"
+    + "000000000###00000000"
     + "00000000000000000000"
-    + "0000000000X000000000"
-    + "00000000000000000000"
-    + "00000000000000000000"
-    + "00000000000000000000"
+    + "0000+00000X000000000"
     + "00000000000000000000"
     + "00000000000000000000"
     + "00000000000000000000"
     + "00000000000000000000"
     + "00000000000000000000"
-    + "0000000000000000000#";
+    + "00000000000000000000"
+    + "00000000000000000000"
+    + "00000000000000000000"
+    + "00000000000000000000";
 
   public Board(){
     parse(this.map);
@@ -59,7 +62,7 @@ public class Board{
 	    String type = (map.substring(cursor, cursor+1));
 
 	    if (type.equals(blockTile)){
-		System.out.println("Block Generated");
+		//System.out.println("Block Generated");
 		type = defaultTile;
 		board[row][col] = new Tile(type);
 		Entity entity = new Entity(row, col, blockTile);
@@ -67,23 +70,33 @@ public class Board{
 		cursor++;
 	    }
 	    else { if (type.equals(playerTile)){
-		type = defaultTile;
-		board[row][col] = new Tile(type);
-		this.player = new Player(row, col, playerTile);
-		board[row][col].occupy(player);
-		cursor++;
-	    } else{
+		    type = defaultTile;
+		    board[row][col] = new Tile(type);
+		    this.player = new Player(row, col, playerTile);
+		    board[row][col].occupy(player);
+		    cursor++;
+		}
+	    else { if (type.equals(aiTile)){  //AI STUFF
+		    type = defaultTile; 
+		    board[row][col] = new Tile(type);
+		    int arraySize = aiArray.length;
+		    this.aiArray = Arrays.copyOf(aiArray, arraySize + 1);
+		    Ai ai = new Ai(row, col, aiTile);
+		    aiArray[arraySize] = ai;
+		    board[row][col].occupy(ai);
+		    cursor++;
+		} 
+	    else{
 		type = defaultTile;
 		board[row][col] = new Tile(type);
 		cursor++;
 	    }
 	    }
-
+	    }
 	}
+    //System.out.println("EntityGen complete");	       
     }
-    System.out.println("EntityGen complete");	       
   }
-
   public Tile getTile(int x, int y){
     return board[y][x];
   }
@@ -98,6 +111,9 @@ public class Board{
 
   public Player getPlayer(){
     return player;
+  }
+  public Ai[] getAiArray(){
+      return aiArray;
   }
 
   public String toString(){

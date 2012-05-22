@@ -20,10 +20,6 @@ public class Tile{
 	occupant = e;
 	occupied = true;
     }
-    public void occupy(Player e){
-	occupant = e;
-	occupied = true;
-    }
 
     public void vacate(){
 	occupant = null;
@@ -44,5 +40,12 @@ public class Tile{
 	    s = occupant.toString();
 	}
 	return s;
+    }
+    public void die(){
+	if (occupied){
+	    vacate();
+	    occupant.die();
+	    
+	}
     }
 }
