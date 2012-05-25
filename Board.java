@@ -146,27 +146,10 @@ public class Board{
     public Player getPlayer(){
         return player;
     }
+
     public Ai[] getAiArray(){
         return aiArray;
     }
-  }
-
-  public Tile getTile(int x, int y){
-    return board[y][x];
-  }
-
-  public int getHeight(){
-    return height;
-  }
-
-  public int getWidth(){
-    return width;
-  }
-
-  public Player getPlayer(){
-    return player;
-  }
-
 
     public String toString(){
         String t = "";
@@ -178,7 +161,6 @@ public class Board{
             t += "\n";
         }
         return t;
-
   }
 
 }

@@ -2,7 +2,6 @@ import java.util.Scanner;
 import java.util.Arrays;
 
 public class Game{
-<<<<<<< HEAD
     Board board;
     Player player;
     Ai[] aiArray;
@@ -48,7 +47,6 @@ public class Game{
 	        
       }
     }
-}
 
     public void handleMove(String s, Entity e){
 	//System.out.println("called handleMove");
@@ -72,7 +70,7 @@ public class Game{
 	    ; // do nothing
 	}
     }
-    public void mainloop(Game g, Scanner s){
+public void mainloop(Game g, Scanner s){
 	board.takeGame(this);
 	board.gameAi();
 	while (true){
