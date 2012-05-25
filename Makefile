@@ -4,15 +4,15 @@ JAVA=java
 SOURCE=.
 SOURCE_FILES=$(SOURCE)/*.java
 CLASS_FILES=$(SOURCE)/*.class
+MAIN_CLASS=Game
 
+run: compile
+	$(JAVA) $(MAIN_CLASS)
 
-main: compile
 
 compile:
 	$(JAVAC) $(SOURCE_FILES) 
 
-run: compile
-	java game
 
 clean:
 	rm $(CLASS_FILES) *~

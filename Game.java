@@ -70,7 +70,8 @@ public class Game{
 	    ; // do nothing
 	}
     }
-public void mainloop(Game g, Scanner s){
+
+    public void mainloop(Game g, Scanner s){
 	board.takeGame(this);
 	board.gameAi();
 	while (true){
